@@ -1,0 +1,46 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  border: none;
+  list-style: none;
+}
+
+html,
+body,
+#react-target {
+  height: 100%;
+  background-color: #bbb;
+}
+
+button {
+  cursor: pointer;
+  padding: 6px 10px;
+  border-radius: 1rem;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+}
+
+input[type="text"],
+textarea {
+  transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  padding: 6px 10px;
+  margin: 10px 0px;
+  outline: none;
+  border: 1px solid rgba(81, 203, 238, 1);
+  border-radius: 1rem;
+}
+
+input[type="text"]:focus,
+textarea:focus {
+  box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+  border: 1px solid rgb(81, 141, 255);
+}
+
+.filler {
+  flex: 1;
+}
