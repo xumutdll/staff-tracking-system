@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Meteor } from "meteor/meteor";
-
+import "./css/Login.css";
 export const Login = () => {
   const [email, setEmail] = useState(() => "");
   const [password, setPassword] = useState(() => "");
@@ -14,7 +14,7 @@ export const Login = () => {
   };
 
   return (
-    <>
+    <div className="login">
       <form onSubmit={handleLogin} className="login-form">
         <label htmlFor="email">Email:</label>
         <input
@@ -33,6 +33,6 @@ export const Login = () => {
         />
         <button type="submit">Login</button>
       </form>
-    </>
+    </div>
   );
 };

@@ -1,0 +1,20 @@
+ul.user-list {
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  width: 20%;
+  height: calc(100vh - 50px);
+  overflow-y: auto;
+  background-color: #ddd;
+  border-radius: 1rem;
+  margin-left: 2px;
+}
+
+ul.user-list li {
+  width: 100%;
+  padding: 6px 12px 6px 12px;
+  margin: 1px 0;
+  background-color: #eee;
+}
+
+ul.user-list li.chosen {
+  background-color: rgba(0, 0, 255, 0.5);
+}

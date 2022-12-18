@@ -1,0 +1,50 @@
+.header {
+  height: 45px;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: space-between;
+  padding: 0 6px;
+  margin-bottom: 2px;
+}
+
+.header .left {
+  display: flex;
+  align-items: center;
+}
+
+.header .left span.profile {
+  height: 40px;
+  width: fit-content;
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  padding: 0 6px;
+  margin: 0 6px;
+}
+
+.header .left span.profile div {
+  width: fit-content;
+  margin: 0 2px;
+}
+
+.header .right {
+  display: flex;
+  align-items: center;
+}
+
+.header .right span {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 8px;
+  background-color: rgb(220, 220, 220);
+}
+
+.header .right span:hover {
+  outline: 1px solid white;
+  background-color: transparent;
+  color: white;
+}

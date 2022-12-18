@@ -44,3 +44,22 @@ textarea:focus {
 .filler {
   flex: 1;
 }
+
+.dropdown-input {
+  appearance: none;
+  transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  padding: 6px 10px;
+  margin: 10px 0px;
+  outline: none;
+  border: 1px solid rgba(81, 203, 238, 1);
+  border-radius: 1rem;
+}
+
+.dropdown-input:focus {
+  box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+  border: 1px solid rgb(81, 141, 255);
+}

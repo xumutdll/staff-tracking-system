@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useTracker } from "meteor/react-meteor-data";
 
 import { Login } from "./Login.jsx";
+import { Manager } from "./Manager.jsx";
 
 export const App = () => {
   const navigate = useNavigate();
@@ -24,8 +25,9 @@ export const App = () => {
   }, [user]);
 
   return (
-    <div>
-      <h1>Welcome to Meteor!</h1>
-    </div>
+    <Routes>
+      <Route path="/" element={<Login />}></Route>
+      <Route path="/manager" element={<Manager />}></Route>
+    </Routes>
   );
 };
