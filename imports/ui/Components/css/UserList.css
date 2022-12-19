@@ -3,7 +3,7 @@ ul.user-list {
   width: 20%;
   height: calc(100vh - 50px);
   overflow-y: auto;
-  background-color: #ddd;
+  background-color: #eee;
   border-radius: 1rem;
   margin-left: 2px;
 }
@@ -11,8 +11,8 @@ ul.user-list {
 ul.user-list li {
   width: 100%;
   padding: 6px 12px 6px 12px;
-  margin: 1px 0;
-  background-color: #eee;
+  margin: 2px 0;
+  background-color: white;
 }
 
 ul.user-list li.chosen {

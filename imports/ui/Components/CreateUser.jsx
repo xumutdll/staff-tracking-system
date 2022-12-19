@@ -1,13 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Meteor } from "meteor/meteor";
 
 import "./css/CreateUser.css";
 import "react-responsive-modal/styles.css";
 import { Modal } from "react-responsive-modal";
 import DateTimePicker from "react-datetime-picker";
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPen } from "@fortawesome/free-solid-svg-icons";
 
 export const CreateUser = () => {
   const [open, setOpen] = useState(false);
@@ -50,10 +47,6 @@ export const CreateUser = () => {
       } else alert(res);
     });
   };
-
-  useEffect(() => {
-    console.log(form);
-  }, [form]);
 
   return (
     <div className="create-user">

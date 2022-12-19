@@ -47,7 +47,7 @@ export const UserList = ({ userList, handleChange }) => {
           return (
             <li onClick={(e) => handleClick(e, user._id)} key={user._id}>
               {user.profile.firstName} {user.profile.lastName}
-              {" : "}
+              {" - "}
               {user.profile.role}
             </li>
           );

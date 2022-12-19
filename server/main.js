@@ -31,28 +31,19 @@ Meteor.methods({
     // const user = Meteor.users.findOne({ "emails.address": info.email });
     // console.log(info.email);
     // console.log(user);
-    if (
-      info.firstName === "" ||
-      info.lastName === "" ||
-      info.email === "" ||
-      info.phone === ""
-    )
-      return "Please fill the empty areas!";
-    else {
-      Meteor.users.update(
-        { _id: info._id },
-        {
-          $set: {
-            "profile.firstName": info.firstName,
-            "profile.lastName": info.lastName,
-            emails: [{ address: info.email }],
-            "profile.phone": info.phone,
-            "profile.role": info.role,
-            "profile.active": info.active,
-          },
-        }
-      );
-    }
+    Meteor.users.update(
+      { _id: info._id },
+      {
+        $set: {
+          "profile.firstName": info.firstName,
+          "profile.lastName": info.lastName,
+          emails: [{ address: info.email }],
+          "profile.gender": info.gender,
+          "profile.role": info.role,
+          "profile.employmentDate": info.employmentDate,
+        },
+      }
+    );
   },
 });
 
