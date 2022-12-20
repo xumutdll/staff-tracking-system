@@ -1,0 +1,62 @@
+.create-leave {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.create-leave button {
+  width: 50%;
+  height: 35px;
+  background-color: rgb(58, 151, 176);
+  margin-top: 3px;
+  color: rgba(255, 255, 255);
+  align-self: center;
+}
+
+.create-leave-form {
+  margin: 20px 20px;
+  width: 30vw;
+  height: 35vw;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.create-leave-form label {
+  display: block;
+  margin-top: 12px;
+}
+
+.create-leave-form > input {
+  width: 90%;
+  margin-left: 15px;
+  margin-bottom: 15px;
+  margin-top: 2px;
+}
+.create-leave-form > textarea {
+  width: 90%;
+  margin-left: 15px;
+  margin-bottom: 15px;
+  margin-top: 2px;
+  height: 100px;
+}
+
+.create-leave-form > button {
+  width: 30%;
+  /* margin-left: auto; */
+  align-self: flex-end;
+}
+
+.create-leave-form .date-time-picker-wrapper {
+  margin: 10px 15px;
+  border-radius: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.create-leave-form .dropdown-input {
+  width: 90%;
+  margin-left: 15px;
+  margin-bottom: 16px;
+  margin-top: 3px;
+}

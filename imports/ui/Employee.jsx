@@ -5,7 +5,8 @@ import moment from "moment/moment";
 
 import "./css/Employee.css";
 import { Header } from "./Components/Header";
-import { ShiftsList } from "../api/Collections";
+import { LeaveReqList, ShiftsList } from "../api/Collections";
+import { CreateLeaveRequest } from "./Components/CreateLeaveRequest";
 
 export const Employee = () => {
   const id = Meteor.userId();
@@ -35,6 +36,7 @@ export const Employee = () => {
   useEffect(() => {
     Meteor.subscribe("Employee", id);
     Meteor.subscribe("Shifts");
+    Meteor.subscribe("LeaveReq");
   }, []);
 
   const user = useTracker(() => {
@@ -44,7 +46,10 @@ export const Employee = () => {
   const shifts = useTracker(() => {
     return ShiftsList.findOne({ employeeId: id });
   });
-  console.log(shifts);
+
+  const userLeaveReqs = useTracker(() => {
+    return LeaveReqList.find({ employeeId: id }).fetch();
+  });
 
   useEffect(() => {
     if (!!user) {
@@ -249,7 +254,33 @@ export const Employee = () => {
             </>
           )}
         </div>
-        <div className="leave"></div>
+        <div className="leave">
+          <CreateLeaveRequest />
+          {userLeaveReqs.map((req) => {
+            return (
+              <div key={req._id} className="leave-reqs">
+                <h4>Title: </h4>
+                {req.title}
+                <br />
+                <h4>Statement: </h4>
+                {req.statement}
+                <br />
+                <h4>Start Date: </h4>
+                {req.startDate}
+                <br />
+                <h4>End Date: </h4>
+                {req.endDate}
+                <br />
+                <h4>Status: </h4>
+                {req.status === 0
+                  ? "Declined"
+                  : req.status === 1
+                  ? "Accepted"
+                  : "Pending"}
+              </div>
+            );
+          })}
+        </div>
       </div>
     </div>
   );

@@ -1,8 +1,10 @@
 import { Meteor } from "meteor/meteor";
 import { Accounts } from "meteor/accounts-base";
 import { check } from "meteor/check";
+import moment from "moment";
 
 import { ShiftsList } from "../imports/api/Collections";
+import { LeaveReqList } from "../imports/api/Collections";
 
 Meteor.startup(() => {});
 
@@ -93,6 +95,20 @@ Meteor.methods({
       }
     );
   },
+  "leaveReqs.insert"(form) {
+    check(form, Object);
+    form.startDate = form.startDate.getTime();
+    form.endDate = form.endDate.getTime();
+
+    if (form.startDate < form.endDate) {
+      form.startDate = moment(form.startDate).format("DD MMMM YYYY HH:mm");
+      form.endDate = moment(form.endDate).format("DD MMMM YYYY HH:mm");
+
+      LeaveReqList.insert(form);
+      return "Leave request sent successfully!";
+    }
+    return "The start date of the request cannot be earlier than the end date of the request!";
+  },
 });
 
 Meteor.publish("Manager", () => {
@@ -108,4 +124,8 @@ Meteor.publish("Employee", (userId) => {
 
 Meteor.publish("Shifts", () => {
   return ShiftsList.find();
+});
+
+Meteor.publish("LeaveReq", () => {
+  return LeaveReqList.find();
 });

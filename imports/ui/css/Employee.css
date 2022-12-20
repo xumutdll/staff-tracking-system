@@ -19,7 +19,7 @@
   background-color: white;
   margin-left: 6px;
   padding: 16px;
-  width: 30%;
+  width: 20%;
   border-radius: 1rem;
   overflow-y: auto;
   display: flex;
@@ -68,4 +68,24 @@
 }
 .employee .main .schedule .off {
   color: red;
+}
+
+.employee .main .leave {
+  background-color: white;
+  margin: 0px 6px;
+  width: 30%;
+  border-radius: 1rem;
+  overflow-y: auto;
+  padding: 16px 6px;
+  display: flex;
+  flex-direction: column;
+}
+.employee .main .leave .leave-reqs {
+  margin: 12px 8px 4px 8px;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  border-radius: 1rem;
+  padding: 6px;
+}
+.employee .main .leave .leave-reqs h4 {
+  display: inline;
 }

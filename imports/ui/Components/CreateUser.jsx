@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { Meteor } from "meteor/meteor";
+import { Modal } from "react-responsive-modal";
+import "react-responsive-modal/styles.css";
+import DateTimePicker from "react-datetime-picker";
 
 import "./css/CreateUser.css";
-import "react-responsive-modal/styles.css";
-import { Modal } from "react-responsive-modal";
-import DateTimePicker from "react-datetime-picker";
 
 export const CreateUser = () => {
   const [open, setOpen] = useState(false);
