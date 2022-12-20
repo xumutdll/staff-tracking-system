@@ -62,7 +62,7 @@ export const Header = ({ userList }) => {
         </span>
       </div>
       <div className="right">
-        {user.profile.role === "Manager" && (
+        {!!user && user.profile.role === "Manager" ? (
           <>
             <NavLink>
               <span onClick={() => setNotificationFlag(!notificationFlag)}>
@@ -132,6 +132,8 @@ export const Header = ({ userList }) => {
               </div>
             )}
           </>
+        ) : (
+          ""
         )}
 
         <NavLink>

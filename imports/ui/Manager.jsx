@@ -8,6 +8,7 @@ import "./css/Manager.css";
 import { Header } from "./Components/Header";
 import { UserList } from "./Components/UserList";
 import { ShiftsList } from "../api/Collections";
+import CalendarTable from "./Components/CalendarTable";
 
 export const Manager = () => {
   const genderOptions = ["Unspecified", "Male", "Female"];
@@ -259,6 +260,7 @@ export const Manager = () => {
                   </tr>
                 </tbody>
               </table>
+              {/* <CalendarTable /> */}
             </>
           )}
         </div>
