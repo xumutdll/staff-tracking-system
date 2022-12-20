@@ -33,7 +33,7 @@ export const Manager = () => {
     };
   });
 
-  const [shiftHours, setSchiftHours] = useState(() => {
+  const [shiftHours, setShiftHours] = useState(() => {
     return {
       employeeId: "",
       shiftStart: "",
@@ -41,6 +41,7 @@ export const Manager = () => {
       lunchBreakStart: "",
       lunchBreakEnd: "",
       totalTime: "",
+      weekDays: [true, false, false, false, false, false, false],
     };
   });
 
@@ -81,13 +82,14 @@ export const Manager = () => {
 
     shiftsList.forEach((shift) => {
       if (shift.employeeId === id) {
-        setSchiftHours({
+        setShiftHours({
           employeeId: shift.employeeId,
           shiftStart: shift.shiftStart,
           shiftEnd: shift.shiftEnd,
           lunchBreakStart: shift.lunchBreakStart,
           lunchBreakEnd: shift.lunchBreakEnd,
           totalTime: shift.totalTime,
+          weekDays: shift.weekDays,
         });
       }
     });
@@ -106,6 +108,15 @@ export const Manager = () => {
   useEffect(() => {
     Meteor.call("shifts.update", shiftHours);
   }, [shiftHours]);
+
+  const toggleDays = (dayNum) => {
+    let clone = [...shiftHours.weekDays];
+    clone[dayNum] = !clone[dayNum];
+    return setShiftHours({
+      ...shiftHours,
+      weekDays: clone,
+    });
+  };
 
   return (
     <div className="manager">
@@ -135,7 +146,7 @@ export const Manager = () => {
                         type="time"
                         value={shiftHours.shiftStart}
                         onChange={(e) =>
-                          setSchiftHours({
+                          setShiftHours({
                             ...shiftHours,
                             shiftStart: e.target.value,
                           })
@@ -147,7 +158,7 @@ export const Manager = () => {
                         type="time"
                         value={shiftHours.shiftEnd}
                         onChange={(e) =>
-                          setSchiftHours({
+                          setShiftHours({
                             ...shiftHours,
                             shiftEnd: e.target.value,
                           })
@@ -159,7 +170,7 @@ export const Manager = () => {
                         type="time"
                         value={shiftHours.lunchBreakStart}
                         onChange={(e) =>
-                          setSchiftHours({
+                          setShiftHours({
                             ...shiftHours,
                             lunchBreakStart: e.target.value,
                           })
@@ -171,12 +182,79 @@ export const Manager = () => {
                         type="time"
                         value={shiftHours.lunchBreakEnd}
                         onChange={(e) =>
-                          setSchiftHours({
+                          setShiftHours({
                             ...shiftHours,
                             lunchBreakEnd: e.target.value,
                           })
                         }
                       />
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <table className="weekly">
+                <thead>
+                  <tr>
+                    <th>Monday</th>
+                    <th>Tuesday</th>
+                    <th>Wednesday</th>
+                    <th>Thursday</th>
+                    <th>Friday</th>
+                    <th>Saturday</th>
+                    <th>Sunday</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td onClick={() => toggleDays(0)}>
+                      {shiftHours.weekDays[0] ? (
+                        <div className="on">Work Day</div>
+                      ) : (
+                        <div className="off">Off Day</div>
+                      )}
+                    </td>
+                    <td onClick={() => toggleDays(1)}>
+                      {shiftHours.weekDays[1] ? (
+                        <div className="on">Work Day</div>
+                      ) : (
+                        <div className="off">Off Day</div>
+                      )}
+                    </td>
+                    <td onClick={() => toggleDays(2)}>
+                      {shiftHours.weekDays[2] ? (
+                        <div className="on">Work Day</div>
+                      ) : (
+                        <div className="off">Off Day</div>
+                      )}
+                    </td>
+                    <td onClick={() => toggleDays(3)}>
+                      {shiftHours.weekDays[3] ? (
+                        <div className="on">Work Day</div>
+                      ) : (
+                        <div className="off">Off Day</div>
+                      )}
+                    </td>
+                    <td onClick={() => toggleDays(4)}>
+                      {shiftHours.weekDays[4] ? (
+                        <div className="on">Work Day</div>
+                      ) : (
+                        <div className="off">Off Day</div>
+                      )}
+                    </td>
+                    <td onClick={() => toggleDays(5)}>
+                      {shiftHours.weekDays[5] ? (
+                        <div className="on">Work Day</div>
+                      ) : (
+                        <div className="off">Off Day</div>
+                      )}
+                    </td>
+
+                    <td onClick={() => toggleDays(6)}>
+                      {shiftHours.weekDays[6] ? (
+                        <div className="on">Work Day</div>
+                      ) : (
+                        <div className="off">Off Day</div>
+                      )}
                     </td>
                   </tr>
                 </tbody>

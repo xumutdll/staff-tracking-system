@@ -53,10 +53,24 @@
   width: 80%;
 }
 
-.manager .main .schedule table.daily,
-.manager .main .schedule table.daily th,
-.manager .main .schedule table.daily td {
+.manager .main .schedule table,
+.manager .main .schedule table th,
+.manager .main .schedule table td {
   border: 1px solid rgba(0, 0, 0, 0.4);
   border-collapse: collapse;
   padding: 4px 8px;
+  margin: 20px 0px;
+  text-align: center;
+}
+
+.manager .main .schedule .weekly td {
+  width: 90px;
+  cursor: pointer;
+}
+
+.manager .main .schedule .on {
+  color: green;
+}
+.manager .main .schedule .off {
+  color: red;
 }

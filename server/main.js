@@ -70,6 +70,7 @@ Meteor.methods({
           lunchBreakStart: shiftHours.lunchBreakStart,
           lunchBreakEnd: shiftHours.lunchBreakEnd,
           totalTime: shiftHours.totalTime,
+          weekDays: shiftHours.weekDays,
         },
       }
     );
