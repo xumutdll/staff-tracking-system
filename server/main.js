@@ -2,6 +2,8 @@ import { Meteor } from "meteor/meteor";
 import { Accounts } from "meteor/accounts-base";
 import { check } from "meteor/check";
 
+import { ShiftsList } from "../imports/api/Collections";
+
 Meteor.startup(() => {});
 
 Meteor.methods({
@@ -45,10 +47,42 @@ Meteor.methods({
       }
     );
   },
+
+  "shifts.insert"(shiftHours) {
+    check(shiftHours, Object);
+
+    let exists = ShiftsList.findOne({
+      employeeId: shiftHours.employeeId,
+    });
+
+    !exists && ShiftsList.insert(shiftHours);
+  },
+
+  "shifts.update"(shiftHours) {
+    check(shiftHours, Object);
+
+    ShiftsList.update(
+      { employeeId: shiftHours.employeeId },
+      {
+        $set: {
+          shiftStart: shiftHours.shiftStart,
+          shiftEnd: shiftHours.shiftEnd,
+          lunchBreakStart: shiftHours.lunchBreakStart,
+          lunchBreakEnd: shiftHours.lunchBreakEnd,
+          totalTime: shiftHours.totalTime,
+        },
+      }
+    );
+    // return "Exam has successfully updated!";
+  },
 });
 
 Meteor.publish("Manager", () => {
   return Meteor.users.find({
     "profile.role": { $ne: "Manager" },
   });
+});
+
+Meteor.publish("Shifts", () => {
+  return ShiftsList.find();
 });

@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Meteor } from "meteor/meteor";
 import { useTracker } from "meteor/react-meteor-data";
+import DateTimePicker from "react-datetime-picker";
 import moment from "moment/moment";
 
 import "./css/Manager.css";
 import { Header } from "./Components/Header";
 import { UserList } from "./Components/UserList";
-import DateTimePicker from "react-datetime-picker";
+import { ShiftsList } from "../api/Collections";
 
 export const Manager = () => {
   const genderOptions = ["Unspecified", "Male", "Female"];
@@ -19,7 +20,6 @@ export const Manager = () => {
   ];
 
   const [empDateFlag, setEmpDateFlag] = useState(() => true);
-  const [x, d] = useState(() => "16:50");
 
   const [form, setForm] = useState(() => {
     return {
@@ -46,11 +46,24 @@ export const Manager = () => {
 
   useEffect(() => {
     Meteor.subscribe("Manager");
+    Meteor.subscribe("Shifts");
     //subscribe on deployment
   }, []);
 
   const userList = useTracker(() => {
     return Meteor.users.find({ "profile.role": { $ne: "Manager" } }).fetch();
+  });
+
+  const shiftsList = useTracker(() => {
+    let list = ShiftsList.find().fetch();
+    if (userList.length > 0) {
+      if (userList.length !== list.length) {
+        userList.forEach((user) => {
+          Meteor.call("shifts.insert", { ...shiftHours, employeeId: user._id });
+        });
+      }
+    }
+    return list;
   });
 
   const handleChange = (id) => {
@@ -65,7 +78,20 @@ export const Manager = () => {
       employmentDate: selectedUser.profile.employmentDate,
       createdAt: selectedUser.createdAt,
     });
-    setSchiftHours({ ...shiftHours, employeeId: id });
+
+    shiftsList.forEach((shift) => {
+      if (shift.employeeId === id) {
+        setSchiftHours({
+          employeeId: shift.employeeId,
+          shiftStart: shift.shiftStart,
+          shiftEnd: shift.shiftEnd,
+          lunchBreakStart: shift.lunchBreakStart,
+          lunchBreakEnd: shift.lunchBreakEnd,
+          totalTime: shift.totalTime,
+        });
+      }
+    });
+
     setEmpDateFlag(true);
   };
 
@@ -78,7 +104,7 @@ export const Manager = () => {
   };
 
   useEffect(() => {
-    console.log(shiftHours);
+    Meteor.call("shifts.update", shiftHours);
   }, [shiftHours]);
 
   return (
@@ -87,74 +113,76 @@ export const Manager = () => {
       <div className="main">
         <UserList userList={userList} handleChange={(id) => handleChange(id)} />
         <div className="schedule">
-          <div>
-            <table className="daily">
-              <thead>
-                <tr>
-                  <th colSpan="2">Shift</th>
-                  <th colSpan="2">Lunch Break</th>
-                </tr>
-                <tr>
-                  <th>Start</th>
-                  <th>End</th>
-                  <th>Start</th>
-                  <th>End</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>
-                    <input
-                      type="time"
-                      value={shiftHours.shiftStart}
-                      onChange={(e) =>
-                        setSchiftHours({
-                          ...shiftHours,
-                          shiftStart: e.target.value,
-                        })
-                      }
-                    />
-                  </td>
-                  <td>
-                    <input
-                      type="time"
-                      value={shiftHours.shiftEnd}
-                      onChange={(e) =>
-                        setSchiftHours({
-                          ...shiftHours,
-                          shiftEnd: e.target.value,
-                        })
-                      }
-                    />
-                  </td>
-                  <td>
-                    <input
-                      type="time"
-                      value={shiftHours.lunchBreakStart}
-                      onChange={(e) =>
-                        setSchiftHours({
-                          ...shiftHours,
-                          lunchBreakStart: e.target.value,
-                        })
-                      }
-                    />
-                  </td>
-                  <td>
-                    <input
-                      type="time"
-                      value={shiftHours.lunchBreakEnd}
-                      onChange={(e) =>
-                        setSchiftHours({
-                          ...shiftHours,
-                          lunchBreakEnd: e.target.value,
-                        })
-                      }
-                    />
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+          {!!shiftHours.employeeId && (
+            <>
+              <table className="daily">
+                <thead>
+                  <tr>
+                    <th colSpan="2">Shift</th>
+                    <th colSpan="2">Lunch Break</th>
+                  </tr>
+                  <tr>
+                    <th>Start</th>
+                    <th>End</th>
+                    <th>Start</th>
+                    <th>End</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <input
+                        type="time"
+                        value={shiftHours.shiftStart}
+                        onChange={(e) =>
+                          setSchiftHours({
+                            ...shiftHours,
+                            shiftStart: e.target.value,
+                          })
+                        }
+                      />
+                    </td>
+                    <td>
+                      <input
+                        type="time"
+                        value={shiftHours.shiftEnd}
+                        onChange={(e) =>
+                          setSchiftHours({
+                            ...shiftHours,
+                            shiftEnd: e.target.value,
+                          })
+                        }
+                      />
+                    </td>
+                    <td>
+                      <input
+                        type="time"
+                        value={shiftHours.lunchBreakStart}
+                        onChange={(e) =>
+                          setSchiftHours({
+                            ...shiftHours,
+                            lunchBreakStart: e.target.value,
+                          })
+                        }
+                      />
+                    </td>
+                    <td>
+                      <input
+                        type="time"
+                        value={shiftHours.lunchBreakEnd}
+                        onChange={(e) =>
+                          setSchiftHours({
+                            ...shiftHours,
+                            lunchBreakEnd: e.target.value,
+                          })
+                        }
+                      />
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </>
+          )}
         </div>
         <div className="info">
           {!!form._id && (
