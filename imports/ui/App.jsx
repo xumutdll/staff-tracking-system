@@ -6,6 +6,8 @@ import { useTracker } from "meteor/react-meteor-data";
 
 import { Login } from "./Login.jsx";
 import { Manager } from "./Manager.jsx";
+import { Employee } from "./Employee.jsx";
+import { NotFound } from "./Components/NotFound.jsx";
 
 export const App = () => {
   const navigate = useNavigate();
@@ -18,9 +20,7 @@ export const App = () => {
     user && window.location.pathname === "/"
       ? user.profile.role === "Manager"
         ? navigate("/manager")
-        : user.profile.role === "Teacher"
-        ? navigate("/teacher")
-        : navigate("/student")
+        : navigate("/employee")
       : {};
   }, [user]);
 
@@ -28,6 +28,8 @@ export const App = () => {
     <Routes>
       <Route path="/" element={<Login />}></Route>
       <Route path="/manager" element={<Manager />}></Route>
+      <Route path="/employee" element={<Employee />}></Route>
+      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 };

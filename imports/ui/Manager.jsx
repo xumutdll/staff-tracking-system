@@ -19,6 +19,7 @@ export const Manager = () => {
   ];
 
   const [empDateFlag, setEmpDateFlag] = useState(() => true);
+  const [x, d] = useState(() => "16:50");
 
   const [form, setForm] = useState(() => {
     return {
@@ -31,6 +32,18 @@ export const Manager = () => {
       createdAt: "",
     };
   });
+
+  const [shiftHours, setSchiftHours] = useState(() => {
+    return {
+      employeeId: "",
+      shiftStart: "",
+      shiftEnd: "",
+      lunchBreakStart: "",
+      lunchBreakEnd: "",
+      totalTime: "",
+    };
+  });
+
   useEffect(() => {
     Meteor.subscribe("Manager");
     //subscribe on deployment
@@ -52,6 +65,7 @@ export const Manager = () => {
       employmentDate: selectedUser.profile.employmentDate,
       createdAt: selectedUser.createdAt,
     });
+    setSchiftHours({ ...shiftHours, employeeId: id });
     setEmpDateFlag(true);
   };
 
@@ -64,15 +78,84 @@ export const Manager = () => {
   };
 
   useEffect(() => {
-    console.log(form.employmentDate);
-  }, [form]);
+    console.log(shiftHours);
+  }, [shiftHours]);
 
   return (
     <div className="manager">
       <Header />
       <div className="main">
         <UserList userList={userList} handleChange={(id) => handleChange(id)} />
-        <div className="schedule"></div>
+        <div className="schedule">
+          <div>
+            <table className="daily">
+              <thead>
+                <tr>
+                  <th colSpan="2">Shift</th>
+                  <th colSpan="2">Lunch Break</th>
+                </tr>
+                <tr>
+                  <th>Start</th>
+                  <th>End</th>
+                  <th>Start</th>
+                  <th>End</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <input
+                      type="time"
+                      value={shiftHours.shiftStart}
+                      onChange={(e) =>
+                        setSchiftHours({
+                          ...shiftHours,
+                          shiftStart: e.target.value,
+                        })
+                      }
+                    />
+                  </td>
+                  <td>
+                    <input
+                      type="time"
+                      value={shiftHours.shiftEnd}
+                      onChange={(e) =>
+                        setSchiftHours({
+                          ...shiftHours,
+                          shiftEnd: e.target.value,
+                        })
+                      }
+                    />
+                  </td>
+                  <td>
+                    <input
+                      type="time"
+                      value={shiftHours.lunchBreakStart}
+                      onChange={(e) =>
+                        setSchiftHours({
+                          ...shiftHours,
+                          lunchBreakStart: e.target.value,
+                        })
+                      }
+                    />
+                  </td>
+                  <td>
+                    <input
+                      type="time"
+                      value={shiftHours.lunchBreakEnd}
+                      onChange={(e) =>
+                        setSchiftHours({
+                          ...shiftHours,
+                          lunchBreakEnd: e.target.value,
+                        })
+                      }
+                    />
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
         <div className="info">
           {!!form._id && (
             <>
@@ -135,7 +218,7 @@ export const Manager = () => {
                   <DateTimePicker
                     onChange={(e) => setForm({ ...form, employmentDate: e })}
                     value={form.employmentDate}
-                    minDate={new Date()}
+                    // minDate={new Date()}
                     name="employmentDate"
                   />
                 </div>

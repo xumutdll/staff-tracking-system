@@ -108,7 +108,7 @@ export const CreateUser = () => {
             <DateTimePicker
               onChange={(e) => setForm({ ...form, employmentDate: e })}
               value={form.employmentDate}
-              minDate={new Date()}
+              // minDate={new Date()}
               name="employmentDate"
             />
           </div>
