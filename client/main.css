@@ -22,6 +22,7 @@ button {
 }
 
 input[type="text"],
+input[type="password"],
 textarea {
   transition: all 0.3s ease-in-out;
   -webkit-transition: all 0.3s ease-in-out;
@@ -46,6 +47,7 @@ textarea:focus {
 }
 
 .dropdown-input {
+  width: 50%;
   appearance: none;
   transition: all 0.3s ease-in-out;
   -webkit-transition: all 0.3s ease-in-out;

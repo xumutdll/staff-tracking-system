@@ -41,7 +41,7 @@ export const Manager = () => {
       lunchBreakStart: "",
       lunchBreakEnd: "",
       totalTime: "",
-      weekDays: [true, false, false, false, false, false, false],
+      weekDays: [false, false, false, false, false, false, false],
     };
   });
 
@@ -301,6 +301,7 @@ export const Manager = () => {
                   </option>
                 ))}
               </select>
+
               <label htmlFor="role">Position:</label>
               <select
                 value={form.role}

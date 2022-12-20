@@ -1,0 +1,71 @@
+.employee {
+  height: 100%;
+}
+
+.employee .main {
+  display: flex;
+  height: 92%;
+}
+
+.employee .main .schedule {
+  background-color: white;
+  margin-left: 6px;
+  flex: 1;
+  border-radius: 1rem;
+  overflow-y: auto;
+}
+
+.employee .main .info {
+  background-color: white;
+  margin-left: 6px;
+  padding: 16px;
+  width: 30%;
+  border-radius: 1rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.employee .main .info .empDate {
+  font-size: 18px;
+  margin: 8px;
+}
+
+.employee .main .info > button {
+  margin-bottom: 20px;
+  width: 30%;
+}
+
+.employee .main .schedule {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.employee .main .schedule .daily {
+  width: 80%;
+}
+
+.employee .main .schedule table,
+.employee .main .schedule table th,
+.employee .main .schedule table td {
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  border-collapse: collapse;
+  padding: 4px 8px;
+  margin: 20px 0px;
+  text-align: center;
+}
+
+.employee .main .schedule .weekly td {
+  width: 90px;
+}
+
+.employee .main .schedule .on {
+  color: green;
+}
+.employee .main .schedule .off {
+  color: red;
+}

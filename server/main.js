@@ -74,7 +74,24 @@ Meteor.methods({
         },
       }
     );
-    // return "Exam has successfully updated!";
+  },
+
+  "self.update"(info) {
+    check(info, Object);
+    // const user = Meteor.users.findOne({ "emails.address": info.email });
+    // console.log(info.email);
+    // console.log(user);
+    Meteor.users.update(
+      { _id: info._id },
+      {
+        $set: {
+          "profile.firstName": info.firstName,
+          "profile.lastName": info.lastName,
+          emails: [{ address: info.email }],
+          "profile.gender": info.gender,
+        },
+      }
+    );
   },
 });
 
@@ -82,6 +99,11 @@ Meteor.publish("Manager", () => {
   return Meteor.users.find({
     "profile.role": { $ne: "Manager" },
   });
+});
+
+Meteor.publish("Employee", (userId) => {
+  if (!!userId === false) return;
+  return Meteor.users.find({ _id: userId });
 });
 
 Meteor.publish("Shifts", () => {
