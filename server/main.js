@@ -109,6 +109,18 @@ Meteor.methods({
     }
     return "The start date of the request cannot be earlier than the end date of the request!";
   },
+
+  "leaveReqs.update"(info) {
+    check(info, Object);
+    LeaveReqList.update(
+      { _id: info._id },
+      {
+        $set: {
+          status: info.status,
+        },
+      }
+    );
+  },
 });
 
 Meteor.publish("Manager", () => {

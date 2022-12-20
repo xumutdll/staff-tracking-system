@@ -86,6 +86,14 @@
   border-radius: 1rem;
   padding: 6px;
 }
-.employee .main .leave .leave-reqs h4 {
+.employee .main .leave .leave-reqs h4,
+.employee .main .leave .leave-reqs p {
   display: inline;
+}
+
+.employee .main .leave .leave-reqs .declined {
+  color: red;
+}
+.employee .main .leave .leave-reqs .accepted {
+  color: green;
 }

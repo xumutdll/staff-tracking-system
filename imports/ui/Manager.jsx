@@ -120,7 +120,7 @@ export const Manager = () => {
 
   return (
     <div className="manager">
-      <Header />
+      <Header userList={userList} />
       <div className="main">
         <UserList userList={userList} handleChange={(id) => handleChange(id)} />
         <div className="schedule">

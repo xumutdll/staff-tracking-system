@@ -272,11 +272,13 @@ export const Employee = () => {
                 {req.endDate}
                 <br />
                 <h4>Status: </h4>
-                {req.status === 0
-                  ? "Declined"
-                  : req.status === 1
-                  ? "Accepted"
-                  : "Pending"}
+                {req.status === "Pending" ? (
+                  <p>Pending</p>
+                ) : req.status === "Declined" ? (
+                  <p className="declined">Declined</p>
+                ) : (
+                  <p className="accepted">Accepted</p>
+                )}
               </div>
             );
           })}

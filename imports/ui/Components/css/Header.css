@@ -48,3 +48,58 @@
   background-color: transparent;
   color: white;
 }
+
+.header .right .bubble {
+  position: absolute;
+  display: inline-block;
+  background-color: red;
+  border-radius: 50%;
+  width: 15px;
+  height: 15px;
+  top: 5px;
+  right: 70px;
+  color: white;
+  text-align: center;
+  font-size: 12px;
+}
+
+.header .right .notification {
+  z-index: 1;
+  position: absolute;
+  display: inline-block;
+  background-color: rgb(204, 204, 255);
+  border-radius: 1rem;
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  width: 25%;
+  height: 70%;
+  top: 50px;
+  right: 5px;
+  overflow-y: auto;
+}
+
+.header .right .notification .leave-reqs {
+  margin: 8px 8px 4px 8px;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  border-radius: 1rem;
+  padding: 6px;
+  /* display: flex;
+  flex-direction: column; */
+}
+.header .right .notification .leave-reqs h4 {
+  display: inline;
+}
+
+.header .right .notification .leave-reqs .buttons {
+  display: flex;
+  justify-content: flex-end;
+}
+.header .right .notification .leave-reqs .buttons button {
+  margin: 0px 4px;
+}
+
+.header .right .notification .leave-reqs .buttons .accept {
+  background-color: rgb(46, 218, 46);
+}
+.header .right .notification .leave-reqs .buttons .refuse {
+  background-color: rgb(213, 49, 49);
+}

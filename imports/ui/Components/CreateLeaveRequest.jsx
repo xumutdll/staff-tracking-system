@@ -17,7 +17,7 @@ export const CreateLeaveRequest = () => {
       statement: "",
       startDate: new Date(),
       endDate: new Date(),
-      accepted: "0",
+      status: "Pending",
     };
   });
 
@@ -30,7 +30,7 @@ export const CreateLeaveRequest = () => {
           statement: "",
           startDate: new Date(),
           endDate: new Date(),
-          accepted: "0",
+          status: "Pending",
         });
       }
       alert(res);
